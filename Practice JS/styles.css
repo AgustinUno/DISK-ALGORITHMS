@@ -32,18 +32,19 @@ body {
     border: 0.1px solid rgba(240, 248, 255, 0.2);
     box-sizing: border-box;
     line-height: 1.2;
-   
+
 }
 
 .titleText {
-margin-left: 10%;
-margin-top: 8%;
-font-size: 35px;
-font-weight: 550;
+    margin-left: 10%;
+    margin-top: 8%;
+    font-size: 35px;
+    font-weight: 550;
 }
-.subTitle{
+
+.subTitle {
     font-size: 20px;
-font-weight: 500;
+    font-weight: 500;
 }
 
 .inputs {
@@ -53,17 +54,18 @@ font-weight: 500;
     border-radius: 9px;
     border: 0.1px solid rgba(240, 248, 255, 0.2);
     box-sizing: border-box;
-  
+
 }
 
-.input-title{
+.input-title {
     margin-left: 10%;
     margin-top: 6%;
     font-size: 30px;
     font-weight: 505;
     margin-bottom: 2px;
 }
-.input-subtitle{
+
+.input-subtitle {
     margin-bottom: 50px;
     margin-left: 10%;
     font-size: 12px;
@@ -79,8 +81,8 @@ font-weight: 500;
 
 
 
-input{
-    background-color: #010409 ;
+input {
+    background-color: #010409;
     border-radius: 5px;
     border: 0.1px solid rgba(240, 248, 255, 0.2);
     box-sizing: border-box;
@@ -88,17 +90,17 @@ input{
     color: #e4ebf1;
     text-indent: 10px;
     width: 250px;
-    
+
 }
 
 
 input:focus {
-    border: 2px solid #2f81f7; 
-    outline: none; 
+    border: 2px solid #2f81f7;
+    outline: none;
 }
 
 #labels {
-    
+
     margin-bottom: 6px;
 
     margin-top: 20px;
@@ -108,26 +110,27 @@ input:focus {
 }
 
 
-button{
+button {
     background-color: #238636;
     color: #ffffff;
     border: none;
     border-radius: 6px;
     width: 70px;
     height: 30px;
-  
+
 }
-button:hover{
+
+button:hover {
     filter: brightness(120%);
     cursor: pointer;
 }
-button:active
-{
+
+button:active {
     filter: brightness(150%);
 }
 
-.solve{
-   margin-top: 60px;
+.solve {
+    margin-top: 60px;
 }
 
 .outputs {
@@ -137,11 +140,53 @@ button:active
     border-radius: 9px;
     border: 0.1px solid rgba(240, 248, 255, 0.2);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
 }
 
-.output-title{
+.output-title {
     margin-left: 5%;
     margin-top: 3%;
     font-size: 30px;
     font-weight: 505;
+}
+
+.table {
+    height: 57%;
+}
+
+
+.computations {
+    display: flex;
+    height: 25%;
+    width: 100%;
+    justify-content: center;
+}
+
+.compute-panel {
+    border-radius: 5px;
+    border: 0.1px solid rgba(240, 248, 255, 0.2);
+    box-sizing: border-box;
+
+    margin-top: 10px;
+
+    height: 90%;
+    width: 90%;
+
+
+
+}
+
+.compute-title {
+    margin-left: 5%;
+
+    font-size: 20px;
+    font-weight: 505;
+
+}
+
+#dataOut{
+    margin-top: 20px;
+    margin-left: 30px;
 }
