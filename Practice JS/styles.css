@@ -164,12 +164,13 @@ button:active {
     height: 90%;
     width: 90%;
     border-radius: 6px;
-    
     border: 0.1px solid rgba(240, 248, 255, 0.2);
     box-sizing: border-box;
 }
 
-
+#myLineChart{
+    height: 450px !important;
+}
 .computations {
     display: flex;
     height: 25%;
