@@ -122,6 +122,7 @@ var myLineChart; // Declare the variable outside the functions
 function updateChart() {
   var data_values = [previous_track[0], current_track[0], graph_direction, graph_end];
   var labels = ['Previous', 'Current', '', '' , ''];
+  
 
   var data = {
     labels: labels,
@@ -154,6 +155,7 @@ function updateChart() {
       scales: {
         x: {
           beginAtZero: true,
+          labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
           grid: {
            
             
@@ -170,9 +172,17 @@ function updateChart() {
         
       },
       elements: {
+        pointLabel:{
+            label: ['1','2']
+        },
         point: {
           radius: 10, // You can adjust the point radius as needed
-          hoverRadius: 20 // You can adjust the hover radius as needed
+          hoverRadius: 20, // You can adjust the hover radius as needed
+          hitRadius: 60,
+          pointStyle: 'circle'
+        },
+        line:{
+          borderJoinStyle: 'round'
         }
       },layout: {
         padding: {
