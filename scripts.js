@@ -120,7 +120,7 @@ function data_Out () {
 var myLineChart; // Declare the variable outside the functions
 
 function updateChart() {
-  var data_values = [previous_track[0], current_track[0], graph_direction, graph_end];
+  var data_values = [previous_track[0], current_track[0], graph_direction, graph_end ];
   var labels = ['Previous', 'Current', '', '' , ''];
   
 
@@ -131,9 +131,9 @@ function updateChart() {
         label: 'Track',
         data: data_values,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: '#238636',
         tension: 0,
-        pointBackgroundColor: ['rgba(75, 192, 192, 1)', 'rgba(3, 255, 0, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)'],
+        pointBackgroundColor: ['#238636', '#e4ebf1', '#238636', '#238636', '#238636'],
       }
     ]
   };
@@ -182,7 +182,8 @@ function updateChart() {
           pointStyle: 'circle'
         },
         line:{
-          borderJoinStyle: 'round'
+          borderJoinStyle: 'round',
+          borderWidth: '2'
         }
       },layout: {
         padding: {
