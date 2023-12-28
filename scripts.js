@@ -216,3 +216,40 @@ function updateChart() {
 
 // Initial chart setup on page load
 document.addEventListener('DOMContentLoaded', updateChart);
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var drawer = document.querySelector('.drawer');
+
+  document.querySelector('.choices').addEventListener('click', function() {
+      toggleDrawer();
+  });
+
+  document.addEventListener('click', function(event) {
+      var isClickInsideDrawer = drawer.contains(event.target);
+      var isClickOnChoices = event.target.classList.contains('choices');
+
+      if (!isClickInsideDrawer && !isClickOnChoices) {
+          closeDrawer();
+      }
+  });
+});
+
+function toggleDrawer() {
+  var drawer = document.querySelector('.drawer');
+  var currentLeft = parseInt(getComputedStyle(drawer).left);
+
+  // Toggle the drawer by changing its left position
+  drawer.style.left = currentLeft === 0 ? '-300px' : '0'; // Adjust the value based on your preference
+}
+
+function closeDrawer() {
+  var drawer = document.querySelector('.drawer');
+  drawer.style.left = '-300px'; // Adjust the value based on your preference
+}
+
+
+
