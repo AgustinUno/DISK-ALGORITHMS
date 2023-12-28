@@ -132,7 +132,7 @@ function updateChart() {
         data: data_values,
         fill: false,
         borderColor: '#238636',
-        tension: 0,
+        tension: 0.2,
         pointBackgroundColor: ['#238636', '#e4ebf1', '#238636', '#238636', '#238636'],
       }
     ]
@@ -155,13 +155,11 @@ function updateChart() {
       scales: {
         x: {
           beginAtZero: true,
-          labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
-          grid: {
-           
-            
-            }
+         
+
           },
           y: {
+            
             beginAtZero: true,
             grid: { 
               color:['', '#238636', '', '']
