@@ -45,7 +45,14 @@ body {
 .subTitle {
     font-size: 20px;
     font-weight: 500;
+    color: #21c541;
 }
+
+.main-author {
+    display: flex;
+    flex-direction: column;
+}
+
 
 .inputs {
     height: 100%;
@@ -156,8 +163,10 @@ button:active {
     height: 57%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    justify-content: center;
+    /* Center vertically */
 }
 
 .lineGraph {
@@ -168,9 +177,10 @@ button:active {
     box-sizing: border-box;
 }
 
-#myLineChart{
+#myLineChart {
     height: 450px !important;
 }
+
 .computations {
     display: flex;
     height: 25%;
@@ -179,28 +189,34 @@ button:active {
 }
 
 .compute-panel {
+    display: flex;
     border-radius: 5px;
     border: 0.1px solid rgba(240, 248, 255, 0.2);
     box-sizing: border-box;
-
     margin-top: 10px;
-
     height: 90%;
     width: 90%;
-
-
+    gap: 5%;
 
 }
 
 .compute-title {
     margin-left: 5%;
-
     font-size: 20px;
     font-weight: 505;
 
 }
 
-#dataOut{
-    margin-top: 20px;
+#dataOut {
+    margin-top: 25px;
     margin-left: 30px;
+    margin-right: 10px;
+    width: 35%;
+}
+
+.statement {
+    width: 40%;
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 70px;
 }

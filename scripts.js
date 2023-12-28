@@ -4,9 +4,10 @@ var previous_track = []
 var current_track = []
 var seek_rate = []
 var requested_tracks = []
-var checkRt
+var graph_direction;
+var graph_end;
 
-function fetchTracks(inputId, arrayName) {
+function fetchTracks (inputId, arrayName) {
   var inputElement = document.getElementById(inputId)
   var inputString = inputElement.value
 
@@ -22,7 +23,7 @@ function fetchTracks(inputId, arrayName) {
   window[arrayName] = tracksArray
 }
 
-function getData() {
+function getData () {
   fetchTracks('nTracks-input', 'no_tracks')
   fetchTracks('prevTracks-input', 'previous_track')
   fetchTracks('currTracks-input', 'current_track')
@@ -37,7 +38,7 @@ function getData() {
   sort()
 }
 
-function sort() {
+function sort () {
   // Sort the array in ascending order
   requested_tracks.sort(function (a, b) {
     return a - b
@@ -48,8 +49,10 @@ function sort() {
   data_Out()
 }
 var thm
-function data_Out() {
+function data_Out () {
   var out = document.getElementById('dataOut')
+  var direction = ''
+  var gap = ''
   out.innerHTML = ''
 
   out.innerHTML = 'THM = '
@@ -61,27 +64,36 @@ function data_Out() {
       requested_tracks[requested_tracks.length - 1] -
       requested_tracks[0]
 
-    out.innerHTML += `(${current_track[0]} - ${requested_tracks[0]}) + (${requested_tracks[requested_tracks.length - 1]
-      } - ${requested_tracks[0]})`
+    out.innerHTML += `(${current_track[0]} - ${requested_tracks[0]}) + (${
+      requested_tracks[requested_tracks.length - 1]
+    } - ${requested_tracks[0]})`
 
     console.log(
       'THM = ' +
-      (current_track[0] -
-        requested_tracks[0] +
-        (requested_tracks[requested_tracks.length - 1] - requested_tracks[0]))
+        (current_track[0] -
+          requested_tracks[0] +
+          (requested_tracks[requested_tracks.length - 1] - requested_tracks[0]))
     )
+    direction += 'left'
+    gap += 'less than'
+    graph_direction = requested_tracks[0];
+    graph_end = requested_tracks[requested_tracks.length - 1];
   } else {
     thm =
       requested_tracks[requested_tracks.length - 1] -
       current_track[0] +
       (requested_tracks[requested_tracks.length - 1] - requested_tracks[0])
 
-    out.innerHTML += `(${requested_tracks[requested_tracks.length - 1]} - ${current_track[0]
-      }) + (${requested_tracks[requested_tracks.length - 1]} - ${requested_tracks[0]
-      })`
+    out.innerHTML += `(${requested_tracks[requested_tracks.length - 1]} - ${
+      current_track[0]
+    }) + (${requested_tracks[requested_tracks.length - 1]} - ${
+      requested_tracks[0]
+    })`
 
-    //  let r = 42;
-    //  out.innerHTML = `value: ${r}`;
+    direction += 'right'
+    gap += 'greater than'
+    graph_direction = requested_tracks[requested_tracks.length - 1];
+    graph_end = requested_tracks[0];
   }
 
   out.innerHTML += `<br><b><span style="color: #238636;">THM = ${thm}</span></b>`
@@ -95,34 +107,60 @@ function data_Out() {
   console.log('ST: ' + st + ' or ' + st_ms + ' s')
 
   out.innerHTML += `<br><br>ST = ${thm} x ${seek_rate[0]}<br>ST = ${st} / 100<br><b><span style="color: #238636;">ST = ${st_ms} s</span></b>`
+
+  var state = document.getElementById('statement')
+  state.innerHTML = ' '
+  state.innerHTML += `<i>The Total Head Movement is ${thm}, while the Seek Time is ${st_ms} second/s.<br>Thus, the graph shows a ${direction} direction because the current track is ${gap} the previous track.</i>`
+  updateChart(); 
 }
 
+//graph
+var myLineChart; // Declare the variable outside the functions
 
-document.addEventListener('DOMContentLoaded', function () {
- 
-  var labels = ['Point 1', 'Point 2', 'Point 3']; // Provide meaningful labels
+function updateChart() {
+  var data_values = [previous_track[0], current_track[0], graph_direction, graph_end]
+  var labels = ['Point 1', 'Point 2', 'Point 3','Point 1', 'Point 2'];
+
+
+
   var data = {
-      labels: labels,
-      datasets: [{
-          label: 'Monthly Data',
-          data: requested_tracks,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0
-      }]
+    labels: labels,
+    datasets: [
+      {
+        label: 'Track',
+        data: data_values,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0
+      }
+    ]
   };
 
   var ctx = document.getElementById('myLineChart').getContext('2d');
-  var myLineChart = new Chart(ctx, {
-      type: 'line',
-      data: data,
-      options: {
-          indexAxis: 'y',
-          scales: {
-              x: {
-                  beginAtZero: true
-              }
-          }
+
+  // Set a specific canvas size
+  ctx.canvas.width = 400;
+  ctx.canvas.height = 200;
+
+  // Destroy the existing chart if it exists
+  if (myLineChart) {
+    myLineChart.destroy();
+  }
+
+  // Create a new chart
+  myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: {
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true
+        }
       }
+    }
   });
-});
+}
+
+// Initial chart setup on page load
+document.addEventListener('DOMContentLoaded', updateChart);
