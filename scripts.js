@@ -114,14 +114,14 @@ function data_Out () {
   updateChart(); 
 }
 
-//graph
+
+
+
 var myLineChart; // Declare the variable outside the functions
 
 function updateChart() {
-  var data_values = [previous_track[0], current_track[0], graph_direction, graph_end]
-  var labels = ['Point 1', 'Point 2', 'Point 3','Point 1', 'Point 2'];
-
-
+  var data_values = [previous_track[0], current_track[0], graph_direction, graph_end];
+  var labels = ['Previous', 'Current', '', '' , ''];
 
   var data = {
     labels: labels,
@@ -131,35 +131,78 @@ function updateChart() {
         data: data_values,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
-        tension: 0
+        tension: 0,
+        pointBackgroundColor: ['rgba(75, 192, 192, 1)', 'rgba(3, 255, 0, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)', 'rgba(75, 192, 192, 1)'],
       }
     ]
   };
 
   var ctx = document.getElementById('myLineChart').getContext('2d');
 
-  // Set a specific canvas size
-  ctx.canvas.width = 400;
-  ctx.canvas.height = 200;
-
   // Destroy the existing chart if it exists
   if (myLineChart) {
     myLineChart.destroy();
   }
 
-  // Create a new chart
+  // Create a new chart with datalabels plugin
   myLineChart = new Chart(ctx, {
     type: 'line',
     data: data,
     options: {
+    
       indexAxis: 'y',
       scales: {
         x: {
-          beginAtZero: true
+          beginAtZero: true,
+          grid: {
+           
+            
+            }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { 
+              color:['', '#238636', '', '']
+             
+              
+              }
+            }
+        
+      },
+      elements: {
+        point: {
+          radius: 10, // You can adjust the point radius as needed
+          hoverRadius: 20 // You can adjust the hover radius as needed
         }
-      }
+      },layout: {
+        padding: {
+          left: 30, // Adjust the left padding as needed
+          right: 40, // Adjust the right padding as needed
+          top: 40, // Adjust the top padding as needed
+          bottom: 20 // Adjust the bottom padding as needed
+        }
+        },  animation: {
+
+  },
+      plugins: {
+        legend: {
+          display: false
+        },
+        datalabels: {
+          clamp: true,
+          anchor: 'center',
+          align: 'center',
+          font: {
+            size: 120
+          },
+          display: true
+        }
+      },
+      
+     
     }
   });
+  
 }
 
 // Initial chart setup on page load

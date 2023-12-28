@@ -170,11 +170,11 @@ button:active {
 }
 
 .lineGraph {
-    height: 90%;
-    width: 90%;
+  height: auto;
+  width: 90%;
     border-radius: 6px;
-    border: 0.1px solid rgba(240, 248, 255, 0.2);
-    box-sizing: border-box;
+    border: 0.1px solid rgba(254, 254, 254, 0.2);
+    
 }
 
 #myLineChart {
